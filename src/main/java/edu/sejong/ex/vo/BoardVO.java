@@ -24,6 +24,7 @@ BINDENT           NUMBER(4) */
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class BoardVO {
 	private int bid;
 	private String bname;
