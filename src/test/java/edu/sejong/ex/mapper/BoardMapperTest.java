@@ -28,4 +28,10 @@ class BoardMapperTest {
 			log.info("확인==================" + boardVO );
 		}		
 	}
+	
+	@Test
+	void testRead() {
+		System.out.println(boardMapper.read(1));
+		
+	}
 }
