@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -53,6 +54,15 @@ public class BoardController {
 	public String write_view() {
 		log.info("write_view()..");		
 		return "/board/write_view";
+	}
+	
+	@PostMapping("/write")
+	public String write(BoardVO boardVO) {
+		log.info("write()..");
+		
+		boardService.writeBoard(boardVO);
+		
+		return "redirect:/board/list";
 	}
 
 }
