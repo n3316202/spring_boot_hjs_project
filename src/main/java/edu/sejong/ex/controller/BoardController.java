@@ -64,5 +64,14 @@ public class BoardController {
 		
 		return "redirect:/board/list";
 	}
+	
+	@PostMapping("/modify")
+	public String modify(BoardVO boardVO) {
+		log.info("modify()..");
+		
+		boardService.modifyBoard(boardVO);
+		
+		return "redirect:/board/list";
+	}
 
 }
