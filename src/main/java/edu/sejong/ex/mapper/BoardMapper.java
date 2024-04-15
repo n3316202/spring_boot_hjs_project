@@ -13,4 +13,7 @@ public interface BoardMapper {
 	int delete(int bid);
 	int insertBoard(BoardVO boardVO);
 	int updateBoard(BoardVO boardVO);
+	//댓글 관련
+	public void updateShape(BoardVO boardVO);		
+	public void insertReply(BoardVO boardVO);
 }

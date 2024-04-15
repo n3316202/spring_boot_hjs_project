@@ -65,11 +65,32 @@ public class BoardController {
 		return "redirect:/board/list";
 	}
 	
+	//http://localhost:8282/board/reply_view?bid=44
+	
+	@GetMapping("/reply_view")
+	public String reply_view(BoardVO boardVO, Model model) {
+		log.info("reply_view()..");
+		
+		model.addAttribute("reply_view", boardService.get(boardVO.getBid()));	  
+		
+		return "/board/reply_view";
+	}
+	
+	
 	@PostMapping("/modify")
 	public String modify(BoardVO boardVO) {
 		log.info("modify()..");
 		
 		boardService.modifyBoard(boardVO);
+		
+		return "redirect:/board/list";
+	}
+	
+	@PostMapping("/reply")
+	public String reply(BoardVO boardVO) {
+		log.info("reply()..");
+		
+		boardService.writeReply(boardVO);
 		
 		return "redirect:/board/list";
 	}

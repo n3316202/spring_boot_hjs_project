@@ -33,6 +33,19 @@
 	    <![CDATA[
 	      	update mvc_board set bname = #{bname}, btitle = #{btitle}, bcontent = #{bcontent} where bid = #{bid}
 	     ]]>
-	    </update>			  	  
+	    </update>
+	    
+	    <update id="updateShape" >
+	    <![CDATA[
+	      	update mvc_board set bstep = bstep+1 where bgroup = #{bgroup} and bstep > #{bstep}
+	     ]]>
+	    </update>
+	    
+	    <insert id="insertReply" >
+	    <![CDATA[
+	      insert into mvc_board (bId, bName, bTitle, bContent, bGroup, bStep, bIndent) 
+	      values (mvc_board_seq.nextval, #{bname}, #{btitle}, #{bcontent}, #{bgroup}, #{bstep} + 1,  #{bindent} + 1 )
+	     ]]>
+	    </insert>						  	  
 
 </mapper>

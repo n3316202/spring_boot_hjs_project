@@ -51,4 +51,13 @@ public class BoardServiceImpl implements BoardService {
 		return boardMapper.updateBoard(board);
 	}
 
+	@Override
+	public void writeReply(BoardVO board) {
+		log.info("writeReply().. ");
+		
+		boardMapper.updateShape(board);
+		boardMapper.insertReply(board);	
+		
+	}
+
 }
