@@ -48,5 +48,11 @@ public class BoardController {
 		
 		return "redirect:/board/list";
 	}
+	
+	@GetMapping("/write_view")
+	public String write_view() {
+		log.info("write_view()..");		
+		return "/board/write_view";
+	}
 
 }
