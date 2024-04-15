@@ -38,6 +38,15 @@ public class BoardController {
 		return "/board/content_view";
 	}
 	
-	
+	//http://localhost:8282/board/delete?bid=3
+	@GetMapping("/delete")
+	public String delete(BoardVO boardVO,Model model) {
+		log.info("delete()..");
+		
+		int bid = boardVO.getBid();		
+		boardService.remove(bid);
+		
+		return "redirect:/board/list";
+	}
 
 }

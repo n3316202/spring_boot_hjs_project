@@ -30,4 +30,11 @@ public class BoardServiceImpl implements BoardService {
 		return boardMapper.read(bno);
 	}
 
+	@Override
+	public int remove(int bid) {
+		log.info("remove().. ");
+		
+		return boardMapper.delete(bid);
+	}
+
 }
