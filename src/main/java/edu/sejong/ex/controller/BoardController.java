@@ -34,6 +34,7 @@ public class BoardController {
 	public String content_view(BoardVO boardVO,Model model) {
 		log.info("content_view()..");
 		
+		
 		model.addAttribute("content_view",boardService.get(boardVO.getBid()));	
 		
 		return "/board/content_view";
