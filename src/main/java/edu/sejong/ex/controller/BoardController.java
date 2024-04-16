@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import edu.sejong.ex.page.Criteria;
+import edu.sejong.ex.page.PageVO;
 import edu.sejong.ex.service.BoardService;
 import edu.sejong.ex.vo.BoardVO;
 import lombok.extern.slf4j.Slf4j;
@@ -28,6 +30,19 @@ public class BoardController {
 		
 		return "/board/list";
 	}
+	
+	@GetMapping("/list2")
+	public String list2(Criteria criteria, Model model) {
+		log.info("list()2..");
+		
+		model.addAttribute("boards", boardService.getListWithPaging(criteria));	
+		
+		int total = boardService.getTotal();		
+		model.addAttribute("pageMaker",new PageVO(criteria,total) );	
+		
+		return "/board/list2";
+	}
+	
 	
 	//http://localhost:8282/board/content_view?bid=3
 	@GetMapping("/content_view")
