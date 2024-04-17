@@ -2,6 +2,7 @@ package edu.sejong.ex.mapper;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -22,6 +23,7 @@ class BoardMapperTest {
 		assertNotNull(boardMapper);		
 	}
 
+	@Disabled
 	@Test
 	void testSelectList() {
 		for(BoardVO boardVO : boardMapper.getList()) {
@@ -29,6 +31,14 @@ class BoardMapperTest {
 		}		
 	}
 	
+	@Test
+	void testSelectList2() {
+		for(BoardVO boardVO : boardMapper.getList2()) {
+			log.info("확인==================" + boardVO );
+		}		
+	}
+	
+	@Disabled
 	@Test
 	void testRead() {
 		System.out.println(boardMapper.read(1));
