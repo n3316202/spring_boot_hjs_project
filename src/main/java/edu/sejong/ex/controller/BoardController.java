@@ -31,6 +31,8 @@ public class BoardController {
 		return "/board/list";
 	}
 	
+//	<a href="list2?pageNum=2&amp;amount=10">2</a>
+	
 	@GetMapping("/list2")
 	public String list2(Criteria criteria, Model model) {
 		log.info("list()2..");
