@@ -8,6 +8,5 @@ import edu.sejong.ex.vo.DeptEmpVO;
 
 
 public interface EmpService {
-	List<DeptEmpVO> getDeptEmpList();	//일대다
-	
+	List<DeptEmpVO> getDeptEmpList();	//일대다	
 }

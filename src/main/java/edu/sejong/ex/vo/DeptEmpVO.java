@@ -20,6 +20,6 @@ public class DeptEmpVO {
 	private String dname; // 부서이름
 	private String loc; // 지역
 	
-	private List<EmpVO> empList;
+	private List<EmpVO> empList;	
 	
 }

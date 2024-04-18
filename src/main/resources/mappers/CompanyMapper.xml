@@ -6,9 +6,17 @@
 	    
 	    <select id="getEmpDept" resultType="EmpDeptVO">
 	    <![CDATA[
-	      	select * from emp, dept
+	      select * from emp, dept, salgrade where emp.deptno = dept.deptno and emp.sal BETWEEN salgrade.losal and salgrade.hisal
 	     ]]>
 	    </select>
+	    
+	    <!--  SalGradeVO  -->
+	    <resultMap id="salGradeMap" type="SalGradeVO" >
+	    	<result property="hisal" column="hisal"/>
+	    	<result property="losal" column="losal"/>
+	    	<result property="grade" column="grade"/>   	
+	    </resultMap>
+	    
 	   <!--  EmpVO empMap = new EmpVO() -->
 	    <resultMap id="empMap" type="EmpVO" >
 	    	<id property="empno" column="empno"/>
@@ -18,9 +26,11 @@
 	    	<result property="hiredate" column="hiredate"/>
 	    	<result property="sal" column="sal"/>
 	    	<result property="comm" column="comm"/>
-	    	<result property="deptno" column="deptno"/>	    	
+	    	<result property="deptno" column="deptno"/>	   
+	    	<association property="salGrade" resultMap="salGradeMap" />    	
 	    </resultMap>
 	    
+    
 	    <resultMap  id="deptEmpMap" type="DeptEmpVO">
 	    	<result property="deptno" column="deptno"/>
 	    	<result property="dname" column="dname"/>
@@ -31,7 +41,7 @@
 	    
 	    <select id="getDeptEmpList" resultMap="deptEmpMap">
 	    <![CDATA[
-	      	select * from emp, dept where emp.deptno = dept.deptno
+	        select * from emp, dept, salgrade where emp.deptno = dept.deptno and emp.sal BETWEEN salgrade.losal and salgrade.hisal
 	     ]]>
 	    </select>
 	    					  	  

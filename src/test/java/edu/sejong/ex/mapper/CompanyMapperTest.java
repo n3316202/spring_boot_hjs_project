@@ -26,21 +26,19 @@ class CompanyMapperTest {
 		assertNotNull(companyMapper);
 	}
 	
-/*	@Disabled
+	@Disabled
 	@Test
 	void testGetEmpDeptList() {
-		for(DeptEmpVO vo : companyMapper.getDeptEmpList()) {
+		for(EmpDeptVO vo : companyMapper.getEmpDept()) {
 			System.out.println("확인==================" + vo );
-			
-			 * log.info("사원번호:" + vo.getEmpno() ); log.info("사원이름:" + vo.getEname() );
-			 * log.info("부서번호:" + vo.getDeptno() ); log.info("부서번호:" + vo.getDname() );
-			 
-			
+			 //log.info("사원번호:" + vo.getEmpno() ); log.info("사원이름:" + vo.getEname() );
+			 //log.info("부서번호:" + vo.getDeptno() ); log.info("부서번호:" + vo.getDname() );
+		
 		}		
-	}*/
+	}
 	
 	@Test
-	void testGetGetDeptEmpList() {
+	void testGetDeptEmpList() {
 		
 		System.out.println(companyMapper);
 		System.out.println(companyMapper.getDeptEmpList().size());
@@ -50,12 +48,7 @@ class CompanyMapperTest {
 				
 				for (EmpVO emp : vo.getEmpList()) {
 					System.out.println(emp);
-				}
-				
+				}				
 			}
-			
-
 	}
-	
-
 }
