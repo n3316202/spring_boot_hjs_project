@@ -17,28 +17,18 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Controller
-@RequestMapping("/emp")
-public class EmpController {
+public class HomeController {
 
 	@Autowired
-	private EmpService empService;
-	
-	@GetMapping("/list")
-	public String list(Model model) {
-		log.info("list()..");
-		
-		model.addAttribute("deptEmps",empService.getDeptEmpList());	
-		
-		return "/emp/empList";
-	}
+	private EmpService empService;	
 	
 	@GetMapping("/index")
 	public String index(Model model) {
 		log.info("index()..");
 		
-		//model.addAttribute("deptEmps",empService.getDeptEmpList());	
+		model.addAttribute("deptEmps",empService.getDeptEmpList());	
 		
-		return "/emp/index";
+		return "index";
 	}
 	
 	
