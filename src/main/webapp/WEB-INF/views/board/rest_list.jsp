@@ -105,12 +105,64 @@
 			});
 		}
 		
+		function writeBoard(board){
+			
+			$.ajax({
+				type:"POST",
+				contentType:'application/json; charset=utf-8',
+				url: "${pageContext.request.contextPath}/boards/",
+				data: JSON.stringify(board),
+				success: function(result){
+					console.log(result);
+				},
+				error: function(e){
+					console.log(e);
+				}
+			});
+		}
+		
+		function modifyBoard(board){
+			
+			$.ajax({
+				type: "PUT",
+				contentType:'application/json; charset=utf-8',
+				url: "${pageContext.request.contextPath}/boards/" + board.bid ,
+				data: JSON.stringify(board),
+				success: function(result){
+					console.log(result);
+					boardList();
+				},
+				error: function(e){
+					console.log(e);
+				}
+			});
+		}
+		
+		
+		//let board = {
+		//		bname : "홍길동",
+		//		bcontent : "포스트로 인서트",
+		//		btitle : "안녕히 게숑"				
+		//};
+		
+		//writeBoard(board);
+		//boardList();
+		
+		let board = {
+				bid : 1062,
+				bname : "고무구구구구",
+				bcontent : "호박",
+				btitle : "바뀌었다"				
+		};
+		
+		modifyBoard(board);
+		
 		//deleteBoard(348);
 		
 		//getBoard(328);
 		//getBoard(347);
 		//getBoard(348);
-		boardList();
+		//boardList();
 
 
 
