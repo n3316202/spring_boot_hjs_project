@@ -163,12 +163,26 @@
 		//getBoard(347);
 		//getBoard(348);
 		//boardList();
+		
+		$(document).on("click","#list-table .btn_delete",function(){
+			console.log(this);
+			
+			let bid = $(this).attr("id");
+
+			deleteBoard(bid);
+			$(this).parent().parent().remove();
 
 
+		});
+	});
+</script>
+<script type="text/javascript">
+	$(document).ready(function(){
 
 	});
-
 </script>
+
+
 </head>
 <body>
 	<table id="list-table" width="500" cellpadding="0" cellspacing="0" border="1">
