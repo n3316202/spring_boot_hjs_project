@@ -7,6 +7,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="/js/board.js"></script>
+
 <script type="text/javascript">
 	/* 
 	$.ajax({
@@ -23,19 +25,9 @@
 	*/
 	$(document).ready(function(){
 		
-		function boardList(){
-			$.ajax({
-				type:"GET",
-				url: "${pageContext.request.contextPath}/boards/list",
-				success: function(result){
-					console.log(result);
-					makeList(result);
-				},
-				error: function(e){
-					console.log(e);
-				}
-			});
-		}
+		 //boardService().test()		
+		//boardService.test();
+	
 		
 		function makeList(result) {
 			let htmls = "";
@@ -71,39 +63,21 @@
 			}
 
 			htmls+='<tr>';
-            htmls+='<td colspan="5"> <a href="${pageContext.request.contextPath}/write_view">글작성</a> </td>';		                	
-            htmls+='</tr>';
+	        htmls+='<td colspan="5"> <a href="${pageContext.request.contextPath}/write_view">글작성</a> </td>';		                	
+	        htmls+='</tr>';
 
 			$("#list-table").append(htmls);
 			
 		}
 		
+		//boardService.list(makeList);
+	
+		//getBoard(328);
+		//deleteBoard(348);
 		
-		function getBoard(id){
-			$.ajax({
-				type:"GET",
-				url: "${pageContext.request.contextPath}/boards/" + id,
-				success: function(result){
-					console.log(result);
-				},
-				error: function(e){
-					console.log(e);
-				}
-			});
-		}
-		
-		function deleteBoard(id){
-			$.ajax({
-				type:"DELETE",
-				url: "${pageContext.request.contextPath}/boards/" + id,
-				success: function(result){
-					console.log(result);
-				},
-				error: function(e){
-					console.log(e);
-				}
-			});
-		}
+		boardService.get(328);
+		boardService.del(348);
+
 		
 		function writeBoard(board){
 			
@@ -155,7 +129,7 @@
 				btitle : "바뀌었다"				
 		};
 		
-		modifyBoard(board);
+		//modifyBoard(board);
 		
 		//deleteBoard(348);
 		
