@@ -22,6 +22,26 @@ public class HomeController {
 	@Autowired
 	private EmpService empService;	
 	
+	@GetMapping("/")
+	public String home(Model model) {
+		log.info("home()..");
+		
+		return "home";
+	}
+	
+	
+	@GetMapping("/user/userHome")
+	public void userHome() {
+		log.info("userHome()..");	
+	}
+	
+	@GetMapping("/admin/adminHome")
+	public void adminHome() {
+		log.info("adminHome()..");
+	}
+
+	
+	
 	@GetMapping("/index")
 	public String index(Model model) {
 		log.info("index()..");
@@ -30,6 +50,7 @@ public class HomeController {
 		
 		return "index";
 	}
+	
 	
 	
 
