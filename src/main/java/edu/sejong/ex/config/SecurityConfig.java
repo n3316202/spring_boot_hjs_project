@@ -1,17 +1,25 @@
 package edu.sejong.ex.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
+import edu.sejong.ex.security.CustomUserDetailsService;
 
 @Configuration
 @EnableWebSecurity // 스프링 시큐리티 필터가 스프링 필터체인에 등록됨
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
+	 @Autowired
+	 private CustomUserDetailsService customUserDetailsService;
 	
 /*	이미지(가영이)가 보이지 않는다.
 	우선 정적파일들은 시큐리티에 적용되지 않도록 아래와 같이 설정을 한다.
@@ -43,14 +51,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		        .permitAll(); //모든 유저가 로그인 화면은 볼 수 있게 한다
 	}
 	
+	@Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+	
 	//테스트용 유저 만들기(인메모리 방식)
 	@Override
 	public void configure(AuthenticationManagerBuilder auth) throws Exception {
-		 auth
-		 	.inMemoryAuthentication()
-         	.withUser("member").password("{noop}member").roles("USER")
-         	.and()
-         	.withUser("admin").password("{noop}admin").roles("ADMIN");		
+		/*
+		 * auth .inMemoryAuthentication()
+		 * .withUser("member").password("{noop}member").roles("USER") .and()
+		 * .withUser("admin").password("{noop}admin").roles("ADMIN");
+		 */
+		auth.userDetailsService(customUserDetailsService)
+				.passwordEncoder(passwordEncoder());
+		
 	}
 
 }
