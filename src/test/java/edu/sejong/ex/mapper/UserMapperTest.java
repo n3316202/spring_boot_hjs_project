@@ -19,6 +19,9 @@ class UserMapperTest {
 	@Autowired
 	private UserMapper userMapper;
 	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+
 	@Test
 	void testUserMapper() {
 		assertNotNull(userMapper);
@@ -35,27 +38,32 @@ class UserMapperTest {
 	@Disabled
 	@Test
 	void testInsertUser() {
-			UserVO user = new UserVO();
-			user.setUsername("admin2");
-			user.setPassword(new BCryptPasswordEncoder().encode("admin2"));
-			user.setEnabled("1");
-			
-			userMapper.insertUser(user);
-			userMapper.insertAuthoruties(user);
-			
+//			UserVO user = new UserVO();
+//			user.setUsername("admin2");
+//			user.setPassword(new BCryptPasswordEncoder().encode("admin2"));
+//			user.setEnabled("1");
+//			
+//			userMapper.insertUser(user);
+//			userMapper.insertAuthoruties(user);		
+		
+		UserVO user = new UserVO();
+		user.setUsername("user2");
+		user.setPassword(passwordEncoder.encode("user2"));
+		user.setEnabled("1");
+		
+		userMapper.insertUser(user);
+		userMapper.insertAuthoruties(user);		
 	}
 	
 	
-	@Autowired
-	private PasswordEncoder passwordEncoder;
+
 	
 	@Test
 	void testMatcher() {
 		
 		UserVO user = userMapper.getUser("admin2");
+		
 		boolean isMatch = passwordEncoder.matches("admin2", user.getPassword());
-
-
 		assertEquals(isMatch, true);
 			
 	}
