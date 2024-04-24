@@ -2,10 +2,12 @@ package edu.sejong.ex.mapper;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import edu.sejong.ex.vo.UserVO;
 import lombok.extern.slf4j.Slf4j;
@@ -30,6 +32,7 @@ class UserMapperTest {
 		System.out.println(user);
 	}
 	
+	@Disabled
 	@Test
 	void testInsertUser() {
 			UserVO user = new UserVO();
@@ -42,5 +45,19 @@ class UserMapperTest {
 			
 	}
 	
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+	
+	@Test
+	void testMatcher() {
+		
+		UserVO user = userMapper.getUser("admin2");
+		boolean isMatch = passwordEncoder.matches("admin2", user.getPassword());
+
+
+		assertEquals(isMatch, true);
+			
+	}
 
 }

@@ -1,8 +1,11 @@
 package edu.sejong.ex.service;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import edu.sejong.ex.mapper.BoardMapper;
@@ -21,6 +24,7 @@ public class BoardServiceImpl implements BoardService {
 	public List<BoardVO> getList() {
 		log.info("getList().. ");
 		
+	
 		return boardMapper.getList();
 	}
 
