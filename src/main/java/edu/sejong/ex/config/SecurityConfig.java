@@ -9,10 +9,11 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import edu.sejong.ex.security.CustomNoOpPasswordEncoder;
 import edu.sejong.ex.security.CustomUserDetailsService;
+import edu.sejong.ex.security.EmpUserDetailsService;
 
 @Configuration
 @EnableWebSecurity // 스프링 시큐리티 필터가 스프링 필터체인에 등록됨
@@ -21,6 +22,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	 @Autowired
 	 private CustomUserDetailsService customUserDetailsService;
 	
+	 @Autowired
+	 private EmpUserDetailsService empUserDetailsService;
+		
+	 
 /*	이미지(가영이)가 보이지 않는다.
 	우선 정적파일들은 시큐리티에 적용되지 않도록 아래와 같이 설정을 한다.
 	이제 더이상 리소스파일들은 스프링 시큐리티에서 관리를 하지 않는다.	*/
@@ -53,7 +58,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	
 	@Bean
     public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
+        //return new BCryptPasswordEncoder();
+		return new CustomNoOpPasswordEncoder();
     }
 	
 	//테스트용 유저 만들기(인메모리 방식)
@@ -64,7 +70,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		 * .withUser("member").password("{noop}member").roles("USER") .and()
 		 * .withUser("admin").password("{noop}admin").roles("ADMIN");
 		 */
-		auth.userDetailsService(customUserDetailsService)
+		auth.userDetailsService(empUserDetailsService)
 				.passwordEncoder(passwordEncoder());
 		
 	}
