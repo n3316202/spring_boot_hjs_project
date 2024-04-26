@@ -1,12 +1,10 @@
 package edu.sejong.ex.service;
 
-import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import edu.sejong.ex.mapper.BoardMapper;
 import edu.sejong.ex.page.Criteria;
@@ -24,7 +22,6 @@ public class BoardServiceImpl implements BoardService {
 	public List<BoardVO> getList() {
 		log.info("getList().. ");
 		
-	
 		return boardMapper.getList();
 	}
 
@@ -62,6 +59,7 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
+	@Transactional(rollbackFor = Exception.class) 
 	public void writeReply(BoardVO board) {
 		log.info("writeReply().. ");
 		
