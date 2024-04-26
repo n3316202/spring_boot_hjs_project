@@ -6,6 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>CSRF-삭제 프로젝트</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
+
 <meta name="_csrf" content="${_csrf.token}"/>
 <meta name="_csrf_header" content="${_csrf.headerName}"/>
 
@@ -15,7 +17,6 @@ var token = $("meta[name='_csrf']").attr("content");
 var header = $("meta[name='_csrf_header']").attr("content");
 </script>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
 <script type="text/javascript">
 $(document).ready(function (){
 	
@@ -38,6 +39,7 @@ $(document).ready(function (){
 		});
  	}
 	
+ 	deleteBoard(1182);
 	
 });
 </script>
